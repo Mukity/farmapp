@@ -1,10 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <h3>Hello {{ user }},<br></h3>
+    <button onclick="showSales()">Click to toggle between sales in the last 12 months and the last 5years</button>
+    <div class="sales">
+        <div class="annualsales" id="annualsales">
+            <table>
+                <tr>
+                    <th colspan="2">
+                        Sales made in the last 5 years
+                    </th>
+                </tr>
+                <tr style="font-weight: bold">
+                    <td>Year</td>
+                    <td>Sales</td>
+                </tr>
+                {% for key, value in yearly_sales.items %}
+                    <tr>
+                        <td>
+                            {{key}}
+                        </td>
+                        <td style="text-align: center">{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="monthlysales" id="monthlysales">
+            <table>
+                <tr>
+                    <th colspan="5">
+                        Monthly Data for up to the current month
+
+                    </th>
+                </tr>
+                <tr style="font-weight: bold">
+                    <td>Month</td>
+                    <td>Sales</td>
+                    <td>Expenditure</td>
+                    <td>Profit</td>
+                </tr>
+                {% for item in monthly_sales %}
+                    <tr>
+                        <td style="text-align: center">{{ item.0 }}</td>
+                        <td style="text-align: center">{{ item.1 }}</td>
+                        <td style="text-align: center">{{ item.2 }}</td>
+                        <td style="text-align: center">{{ item.3 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="activeemp">
+        <table>
+            <tr>
+                <td colspan="6" align="center" style="color: lightcyan; font-weight: bolder;">Active Employees</td>
+            </tr>
+            <tr style="color: lightcyan; font-weight: bold; text-align: center;">
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile Number</th>
+                <th>E-Mail</th>
+                <th>ID Number</th>
+                <th>DOB</th>
+                <th>Employment Date</th>
+                <th>Salary</th>
+            </tr>
+            {% for field in employees %}
+                <tr>
+                <td style="text-align: left">{{ field.Employee_ID }}</td>
+                <td  style="text-align: left">{{ field.First_Name }}</td>
+                <td>{{ field.Last_Name }}</td>
+                <td>{{ field.Mobile_Number }}</td>
+                <td>{{ field.E_mail }}</td>
+                <td>{{ field.ID_Number }}</td>
+                <td>{{ field.DOB }}</td>
+                <td>{{ field.Employment_date }}</td>
+                <td>{{ field.Salary }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+{% block lastscript %}
+    <script>
+    function showSales() {
+        const x = document.getElementById("monthlysales");
+        const y = document.getElementById("annualsales")
+
+        if (y.style.display === "none") {
+            y.style.display = "block"
+            x.style.display = "none"
+        } else {
+            y.style.display = "none"
+            x.style.display = "block"
+        }
+    }
+    </script>
+{% endblock %}

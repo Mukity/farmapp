@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seedcrop.css' %}">
+    {% if message %}
+        <script type="application/javascript">
+            alert('{{ message }}');
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    Seedlings and crops
+{% endblock %}
+
+{% block body %}
+    <div class="newcrop">
+        <form method="post" action="/seedling_crop">
+            {% csrf_token  %}
+            {% for field in form %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <div class="croptable">
+            <table>
+           <tr>
+               <td colspan="6" align="center" style="color: darkgreen; font-weight: bolder;">
+                   Seedlings and Crops
+               </td>
+           </tr>
+            <tr style="color: darkgreen; font-weight: bold; text-align: center;">
+                <th>Seedling or Crop ID</th>
+                <th>Crop Type</th>
+                <th>Purchase Date</th>
+                <th>Quantity</th>
+                <th>Expected planting date</th>
+                <th>Price</th>
+            </tr>
+        {% for field in seedlings %}
+            <tr>
+                <td style="text-align: left">{{ field.Seedling_ID }}</td>
+                <td  style="text-align: left">{{ field.Crop_type }}</td>
+                <td>{{ field.Purchase_Date }}</td>
+                <td>{{ field.Quantity }}</td>
+                <td>{{ field.Expected_Planting_Date }}</td>
+                <td>{{ field.Price }}</td>
+        {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

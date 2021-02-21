@@ -1,0 +1,46 @@
+table {
+    margin-left: 10px;
+    width: 98%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr, td {
+    padding: 4px 4px 4px 4px;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: darkgreen;
+  color: white;
+}
+form {
+    color: white;
+    margin-top: 20px;
+}
+
+body {
+    background-image: url("../images/background-sales.jpg");
+    background-repeat: repeat;
+    background-size: 100%;
+}
+
+.newemployee {
+    width: 20%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+
+.employeetable {
+    float: right;
+    text-align: center;
+    width: 80%;
+    overflow: auto;
+    height: 450px;
+    overflow-y: scroll;
+}

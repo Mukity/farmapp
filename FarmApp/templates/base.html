@@ -5,14 +5,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+    <link rel="icon" href="{%  static 'favicon.ico'%}" type="image/ico">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     {% block head %}
     {% endblock %}
 </head>
 <body>
+    <div class="topbar">
+        <img src="{%  static '/images/favicon.png'%}" width="100vw" height="85vw">
+        <label>Farm Management Application</label>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/employees">Employees</a></li>
+            <li><a href="/chemicals_fertilizers">Fertilizers and Chemicals</a></li>
+            <li><a href="/seedling_crop">Seedlings and Crops</a></li>
+            <li><a href="/sales">Sales</a></li>
+            <li style="float:right"><a href="/logout">logout</a></li>
+        </ul>
+    </div>
     {% block body %}
     {% endblock %}
 </body>

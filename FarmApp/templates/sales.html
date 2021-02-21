@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sales.css' %}">
+    {% if message %}
+        <script type="application/javascript">
+            alert('{{ message }}');
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    Sales
+{% endblock %}
+
+{% block body %}
+    <div class="newsales">
+        <form method="post" action="/sales">
+            {% csrf_token  %}
+            {% for field in form %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Save Sales</button>
+        </form>
+    </div>
+    <div class="salestable">
+        <table>
+           <tr>
+               <td colspan="6" align="center" style="color: darkgreen; font-weight: bolder;">
+                   SALES
+               </td>
+           </tr>
+            <tr style="color: darkgreen; font-weight: bold; text-align: center;">
+                <th>Sales ID</th>
+                <th>Product Sold</th>
+                <th>Quantity Sold</th>
+                <th>Price</th>
+                <th>Total Sales Made</th>
+                <th>Date</th>
+            </tr>
+        {% for field in sales %}
+            <tr>
+                <td style="text-align: left">{{ field.Sales_ID }}</td>
+                <td  style="text-align: left">{{ field.Product_Sold }}</td>
+                <td>{{ field.Quantity_Sold }}</td>
+                <td>{{ field.Price }}</td>
+                <td>{{ field.Sales_Made }}</td>
+                <td>{{ field.Date }}</td>
+        {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

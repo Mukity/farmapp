@@ -1,10 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/employees.css' %}">
+    {% if message %}
+        <script type="application/javascript">
+            alert('{{ message }}');
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    Employees
+{% endblock %}
+
+{% block body %}
+    <div class="newemployee">
+        <form method="post" action="/employees">
+            {% csrf_token  %}
+            {% for field in form %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <div class="updateemployee">
+        <form method="post" action="/update_mobile">
+            UPDATE MOBILE<br>
+            {% csrf_token  %}
+            {% for field in form1 %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Update</button>
+        </form>
+        <form method="post" action="/update_salary">
+            {% csrf_token  %}
+            {% for field in form2 %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Update</button>
+        </form>
+        <form method="post" action="/update_terminationdate">
+            {% csrf_token  %}
+            {% for field in form3 %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Update</button>
+        </form>
+        <form method="post" action="/update_email">
+            {% csrf_token  %}
+            {% for field in form4 %}
+                {{ field.label }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <h6>Date format should be YYYY-MM-DD</h6>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+    <div class="employeetable">
+        <table>
+           <tr>
+               <td colspan="6" align="center" style="color: darkgreen; font-weight: bolder;">
+                   Employees
+               </td>
+           </tr>
+            <tr style="color: darkgreen; font-weight: bold; text-align: center;">
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile Number</th>
+                <th>E-Mail</th>
+                <th>ID Number</th>
+                <th>DOB</th>
+                <th>Employment Date</th>
+                <th>Termination Date</th>
+                <th>Salary</th>
+            </tr>
+        {% for field in employee %}
+            <tr>
+                <td style="text-align: left">{{ field.Employee_ID }}</td>
+                <td  style="text-align: left">{{ field.First_Name }}</td>
+                <td>{{ field.Last_Name }}</td>
+                <td>{{ field.Mobile_Number }}</td>
+                <td>{{ field.E_mail }}</td>
+                <td>{{ field.ID_Number }}</td>
+                <td>{{ field.DOB }}</td>
+                <td>{{ field.Employment_date }}</td>
+                <td>{{ field.Termination_date }}</td>
+                <td>{{ field.Salary }}</td>
+        {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

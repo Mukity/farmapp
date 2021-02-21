@@ -1,0 +1,48 @@
+table {
+    margin-left: 10px;
+    width: 98%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr, td {
+    padding: 4px 4px 4px;
+    border: 1px solid white;
+}
+tr:nth-child(even){
+    background-color: white;
+    color: darkgreen;
+}
+th {
+  padding: 6px 6px 6px;
+  text-align: left;
+  background-color: darkgreen;
+  color: white;
+}
+form {
+    font-weight: bolder;
+    color: black;
+    margin-top: 20px;
+}
+
+body {
+    background-image: url("../images/background-fertilizers.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.chem {
+    width: 20%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+
+.chemtable {
+    float: right;
+    text-align: center;
+    width: 80%;
+    overflow: auto;
+    height: 450px;
+    overflow-y: scroll;
+}
