@@ -252,7 +252,6 @@ def update_email(request):
         mail = Employee.objects.get(Employee_ID=request.POST.get('Employee_ID'))
         mail.Mobile_Number = request.POST.get('E_mail')
         mail.save()
-        message = "E-mail has been Changed!"
         return redirect('/')
     else:
         return redirect('/employe')
