@@ -1,0 +1,30 @@
+button:hover {
+  background-color: #5d8e83;
+  color: white;
+}
+body{
+    background-image: url("../images/home.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: lightcyan;
+}
+.form {
+    margin: auto;
+    width: 40%;
+    position: center;
+    border: 3px solid white;
+    padding: 10px;
+    text-align: center;
+}
+
+.name {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+label {
+    color: moccasin;
+    font-size: 25px;
+}

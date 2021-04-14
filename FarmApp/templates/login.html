@@ -1,3 +1,4 @@
+{% load static %}
 {% if message %}
     <script type="application/javascript">
         alert('{{ message }}');
@@ -6,16 +7,20 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
 <body>
+<div class="name">Farm Application</div>
+<div class="form">
 <form action="/login" method="post">
-    LOGIN
-    {% csrf_token  %}
+    <label>LOGIN<br></label>
+    {% csrf_token  %}<br>
     {% for field in login %}
         {{ field.label }}<br>
-        {{ field }}<br>
+        {{ field }}<br><br>
     {% endfor %}
     <button type="submit">Login</button>
 </form>
+</div>
 </body>
 </html>
